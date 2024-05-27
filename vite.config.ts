@@ -30,7 +30,7 @@ const manifestForPlugin = {
   workbox:{
     runtimeCaching:[
       {
-        urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+        urlPattern: /^https:\/\/buylink\.pockethost\.io\/.*/i,
         handler: 'CacheFirst' as const,
         options: {
           cacheName: 'api-cache',
