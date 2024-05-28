@@ -51,11 +51,11 @@ setTasks(prevTasks =>
     prevTasks.map((task) =>
       task.id === record.id ? record : task
     )
-  /*, () => {
+  , () => {
     // Esta función se ejecutará después de que el estado se haya actualizado
     const updatedTasks = JSON.stringify(tasks);
     localStorage.setItem("tasks", updatedTasks);
-  });*/
+  });
 
   } catch (error) {
     console.error('Error updating product:', error);
