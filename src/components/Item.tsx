@@ -46,12 +46,18 @@ const completedState=item.completed
     // Actualizar el producto en la base de datos
     const record = await pb.collection('tasks').update(item.id,{...item,completed:!completedState});
     // Actualizar el producto en el estado y el localStorage
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === item.id ? record : task
-      )
-    );
-
+    
+setTasks(prevTasks =>
+    prevTasks.map((task) =>
+      task.id === item.id
+        ? { ...task, completed: !task.completed }
+        : task
+    )
+  , () => {
+    // Esta función se ejecutará después de que el estado se haya actualizado
+    const updatedTasks = JSON.stringify(tasks);
+    localStorage.setItem("tasks", updatedTasks);
+  });
 
   } catch (error) {
     console.error('Error updating product:', error);
