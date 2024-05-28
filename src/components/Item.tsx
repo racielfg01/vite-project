@@ -39,8 +39,20 @@ function Item({ item,tasks, setTasks }: ListProps) {
     await pb.collection('tasks').delete(item.id);
 
   };
-
-  const handleToggleCompleted = async () => {
+const handleToggleCompleted = () => {
+  setTasks(prevTasks =>
+    prevTasks.map((task) =>
+      task.id === item.id
+        ? { ...task, completed: !task.completed }
+        : task
+    )
+  , () => {
+    // Esta función se ejecutará después de que el estado se haya actualizado
+    const updatedTasks = JSON.stringify(tasks);
+    localStorage.setItem("tasks", updatedTasks);
+  });
+};
+  const handleToggleCompleted1 = async () => {
 const completedState=item.completed
   try {
     // Actualizar el producto en la base de datos
